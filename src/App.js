@@ -9,12 +9,14 @@ import Home from './component/Home';
 import About from './component/About';
 import User from './component/User';
 import Notestate from './context/Notestate';
+import Alert from './component/Alert';
 function App() {
   return (
     <>
     <Notestate>
      <Router>
      <Navbar/> 
+     <Alert msg="this is react app"/>
      <div className="container">
       <Routes>
         <Route exact path='/' element={<Home/>}/>
