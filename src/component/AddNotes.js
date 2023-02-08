@@ -11,7 +11,6 @@ function AddNotes() {
     const handleonchange=(e)=>{
         setNote({...note, [e.target.name]: e.target.value})
     }
-    console.log(note)
     return (
         <div className='container'>
             <h2>Add a Note</h2>

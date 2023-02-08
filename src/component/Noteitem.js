@@ -1,12 +1,17 @@
-import React from 'react'
+import React,{useState,useContext} from 'react'
+import NoteContext from '../context/Notecontext'
+
 function Noteitem(props) {
+    const context=useContext(NoteContext)
+    const {deletnotes}=context
     const { note } = props
     return (
         <div className='col-md-3'>
             <div className="card">
                 <div className="card-body">
-                    <div className='d-flex align-items-center'>
-                    <h5 className="card-title">{note.id}  <i className="fa-sharp fa-solid fa-trash"></i></h5>
+                    <div className='d-flex justify-content-between'>
+                    <h5 className="card-title">{note.id} </h5>
+                    <i className="fa-sharp fa-solid fa-trash" onClick={()=>{deletnotes(note.id)}}></i>
                     </div>
                     <h3 className='card-text'>{note.name}</h3>
                     <h5 className="card-text">{note.age}</h5>

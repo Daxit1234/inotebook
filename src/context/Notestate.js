@@ -48,8 +48,10 @@ const Notestate = (props) => {
     }
 
     //delete a note
-    const deletnotese=()=>{
-
+    const deletnotes=(id)=>{
+        console.log("delete not"+id)
+        const Newnotes=notes.filter(note=>note.id!==id)
+        setnotes(Newnotes)
     }
 
     //edit notes
@@ -57,7 +59,7 @@ const Notestate = (props) => {
 
     }
     return (
-        <NoteContext.Provider value={{ notes, setnotes, addnotes,deletnotese,editnotes }}>
+        <NoteContext.Provider value={{ notes, setnotes, addnotes,deletnotes,editnotes }}>
             {props.children}
         </NoteContext.Provider>
     )
