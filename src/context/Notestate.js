@@ -39,9 +39,9 @@ const Notestate = (props) => {
     //add a note
     const addnotes=(name,description,age)=>{
       const note={
-            "id":23,
+            "id":10,
             "name": name,
-            "description":"this is description",
+            "description":description,
             "age": age
         }
         setnotes(notes.concat(note))
@@ -55,8 +55,25 @@ const Notestate = (props) => {
     }
 
     //edit notes
-    const editnotes=()=>{
+    const editnotes= async(id,name,description,age)=>{
+        //API call
+        // const responce=await fetch(url,{
+        //     method:POST,
+        //     headers:{
+        //         "Content-Type":"application.json"
+        //     },
+        //     body:JSON.stringify(data)
+        // });
+        // return responce.json();
 
+        for(let i=0;i<notes.length;i++){
+            const element=notes[i];
+            if(element.id===id){
+                element.name=name;
+                element.description=description;
+                element.age=age;
+            }
+        }
     }
     return (
         <NoteContext.Provider value={{ notes, setnotes, addnotes,deletnotes,editnotes }}>
