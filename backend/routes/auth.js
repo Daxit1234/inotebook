@@ -4,7 +4,7 @@ const router = express.Router()
 const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
-const fetchuser = require('../models/midddleware/Fetchuser');
+const fetchuser = require('../midddleware/Fetchuser');
 const JWT_SECRET = "i am daxit"
 
 //ROUTE:1 create a user using post:http://localhost:5000/api/auth/createuser

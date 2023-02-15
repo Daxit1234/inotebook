@@ -3,10 +3,10 @@ import NoteContext from '../context/Notecontext'
 function AddNotes() {
     const context=useContext(NoteContext)
     const {addnotes}=context
-    const [note,setNote]=useState({name:"",description:"",age:""})
+    const [note,setNote]=useState({title:"",description:"",tag:""})
     const handleclick=(e)=>{
         e.preventDefault()
-        addnotes(note.name,note.description,note.age)
+        addnotes(note.title,note.description,note.tag)
     }
     const handleonchange=(e)=>{
         setNote({...note, [e.target.name]: e.target.value})
@@ -16,12 +16,12 @@ function AddNotes() {
             <h2>Add a Note</h2>
             <form>
                 <div className="mb-3">
-                    <label htmlFor="name" className="form-label">Name</label>
-                    <input type="text" className="form-control" name='name' id="name" aria-describedby="emailHelp" onChange={handleonchange} />
+                    <label htmlFor="title" className="form-label">Title</label>
+                    <input type="text" className="form-control" name='title' id="title" aria-describedby="emailHelp" onChange={handleonchange} />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="age" className="form-label">Age</label>
-                    <input type="number" name='age' className="form-control" id="age" onChange={handleonchange} />
+                    <label htmlFor="tag" className="form-label">Tag</label>
+                    <input type="text" name='tag' className="form-control" id="tag" onChange={handleonchange} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="description" className="form-label">Description</label>
