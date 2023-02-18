@@ -13,17 +13,18 @@ router.post('/createuser', [
   body('name', "enter valid name").isLength({ min: 3 }),
   body('password', "password must be 5 char").isLength({ min: 5 }),
 ], async (req, res) => {
+  let success = false;
   //if these are error return bad request and the error
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+    return res.status(400).json({success, errors: errors.array() });
   }
 
   //chack user with the same email
   try {
-    let user = await User.findOne({ email: req.body.email })
+    let user = await User.findOne({email: req.body.email })
     if (user) {
-      return res.status(400).json({ errors: "sorry a user with this email" });
+      return res.status(400).json({success, errors: "sorry a user with this email" });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -47,7 +48,8 @@ router.post('/createuser', [
     const authtoken = jwt.sign(data, JWT_SECRET);
     // console.log(jwtdata)
     //res.send(user);
-    res.send({ authtoken })
+    success=true;
+    res.send({success, authtoken })
   }
   catch (err) {
     console.error(err)

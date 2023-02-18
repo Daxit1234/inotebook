@@ -1,12 +1,15 @@
-import React from 'react'
+import React,{useContext} from 'react'
+import NoteContext from '../context/Notecontext'
 
 export default function Alert(props) {
+  const context = useContext(NoteContext)
+  const { alert } = context
   return (
-    <div style={{ height: "50px" }}>
-      <div className="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Alert :</strong>{props.msg}
-        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div className='mt-5 text-center container' style={{ height: "50px" }}>
+     {alert && <div className={`alert alert-${alert.type} alert-dismissible fade show`} role="alert">
+        <strong>{alert.type} :</strong>{alert.msg}
       </div>
+     }
     </div>
   )
 }

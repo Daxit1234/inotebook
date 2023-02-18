@@ -41,7 +41,7 @@ router.post('/addnotes', fetchuser, [
 })
 
 //ROUTE 3:Update and existing note  using PUT: http://localhost:5000/api/notes/updatenote/:id  login require
-router.put('/updatenote/:id', fetchuser,async (req, res) => {
+router.post('/updatenote/:id', fetchuser,async (req, res) => {
     try {
         const { title, description, tag } = req.body
         //Create new notes object

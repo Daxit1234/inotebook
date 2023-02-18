@@ -1,10 +1,15 @@
-import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 function Navbar() {
   const location = useLocation();
+  let navigate=useNavigate()
+  let handlelogout=()=>{
+    localStorage.removeItem("token")
+    navigate('/login',{push:true})
+  }
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <Link className="navbar-brand bg-success rounded" to="/">
             I Notebook
@@ -32,23 +37,13 @@ function Navbar() {
                   About
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className={`nav-link ${location.pathname === "/user" ? "active" : ""}`} to="/user">
-                  User
-                </Link>
-              </li>
             </ul>
-            <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
+           {!localStorage.getItem('token')?
+           <form className="d-flex">
+              <Link className="btn btn-outline-success mx-2" to="/login" role="button"  >Login</Link>
+              <Link className="btn btn-outline-success mx-2" to="/singup" role="button"  >Singup</Link>
+            </form> :<button onClick={handlelogout} className="btn btn-outline-success mx-2">Log Out</button>
+           } 
           </div>
         </div>
       </nav>
